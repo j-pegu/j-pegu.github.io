@@ -5,12 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LACE</title>
     <style>
+    /* Remove bullets and default spacing */
+    nav ul {
+        list-style: none; 
+        padding: 0;
+        display: flex; /* make nav horizontal */
+        gap: 10px; /* space between items */
+    }
 
+    /* Add unique divider symbol between items */
+    nav li::after {
+        content: "✦"; /* unique symbol */
+        margin-left: 10px;
+    }
+
+    /* Remove divider after last item */
+    nav li:last-child::after {
+        content: "";
+    }
+
+    /* Style links */
+    nav a {
+        text-decoration: none; /* remove underline */
+        color: #2a9d8f; /* pick a color different from blue */
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #e76f51; /* highlight on hover */
+
+    /* Hide all sections by default */
+    }
+    main section {
+        display: none;
+    }
+
+    /* Only show the active section */
+    main section.active {
+        display: block;
+    }
     </style>
 </head>
 <body>
     <header>
-        <h1>Latines for Action,Change, & Empowerment(LACE)</h1>
+        <h1>Latines for Action, Change, & Empowerment(LACE)</h1>
         <nav>
             <ul>
                 <li><a href="#what">What</a></li>
@@ -22,6 +60,7 @@
                 <li><a href="#prompts">AI Prompts</a></li>
             </ul>
             </nav>
+
     </header>
 
     <nav>
@@ -31,8 +70,39 @@
     <main>
         <!---the main will be here-->
 
+
         <section id="what">
             <h2>What is LACE?</h2>
+
+             <!-- First Item: Real Image -->
+            <article>
+                <h3>Empowering the Latinx Community</h3>
+                <p>Empowering the Latinx community through education, advocacy, and outreach to inspire social, economic, and political change.</p>
+                <figure>
+                <img src="images/whatslace.jpeg" alt="An event hosted by LACE teaching attendees about voting, representatives, and local voting centers.">
+                <figcaption>LACE event educating community members about voting and civic engagement.</figcaption>
+                </figure>
+            </article>
+
+            <!-- Second Item: Placeholder Image -->
+            <article>
+                <h3>Community Engagement</h3>
+                <p>LACE organizes events, workshops, and outreach programs to connect members, provide educational opportunities, and strengthen community ties.</p>
+                <figure>
+                <img src="images/placeholder2.jpg" alt="Community workshop or event placeholder image.">
+                <figcaption>Interactive workshops to build community connections.</figcaption>
+                </figure>
+            </article>
+
+                <!-- Third Item: Placeholder Image -->
+            <article>
+                <h3>Advocacy & Impact</h3>
+                <p>LACE advocates for Latinx individuals, helping them access resources and opportunities that create lasting social and economic change.</p>
+                <figure>
+                <img src="images/placeholder3.jpg" alt="Advocacy or outreach event placeholder image.">
+                <figcaption>Creating positive change through advocacy and education.</figcaption>
+                </figure>
+            </article>
         </section>
         
         <section id="who">
@@ -64,5 +134,30 @@
     <footer>
         <!--validation links here-->
     </footer>
+
+    <script>
+    // Get all nav links and sections
+    const links = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('main section');
+
+    // Function to show a section and hide the rest
+    function showSection(id) {
+        sections.forEach(sec => sec.classList.remove('active')); // hide all
+        document.getElementById(id).classList.add('active'); // show selected
+    }
+
+    // Add click events to all nav links
+    links.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault(); // prevent default jump
+            const target = link.getAttribute('href').substring(1); // get id without #
+            showSection(target);
+        });
+    });
+
+    // Show "What" section by default when page loads
+    showSection('what');
+    </script>
 </body>
+
 </html>
